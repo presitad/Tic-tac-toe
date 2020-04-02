@@ -34,12 +34,23 @@ class Tiktoc:
         '''
         accept and store the input from symbol
         '''
-        state = "please enter space separate location of %s: "%(curr_symbol)
-        raw = input(state) # "0 1"
-        raw = raw.split(" ") #["0", "1"]
-        row = int(raw[0])
-        col = int(raw[1])
-        self.arr[row][col] = curr_symbol
+        while(True):
+            state = "please enter space separate location of %s: "%(curr_symbol)
+            raw = input(state) # "0 1"
+            raw = raw.split(" ") #["0", "1"]
+            try:
+                row= int(raw[0])
+            except Exception:
+                print ("wrong input!! please enter  valid number")
+            try:
+                col = int(raw[1])
+            except Exception:
+                print ("wrong input!! please enter  valid number")
+            if (0 <= row <=2 )and (0 <= col <=2 ):
+                self.arr[row][col] = curr_symbol
+                break
+            else:
+                print ("wrong input!! please enter  valid number")
 
 
     def check_current_symbol_won(self, curr_symbol):
@@ -87,6 +98,4 @@ class Tiktoc:
             # self.print_array()
 if __name__ == "__main__":
     tt = Tiktoc()
-    import pdb
-    pdb.set_trace()
     tt.run()
